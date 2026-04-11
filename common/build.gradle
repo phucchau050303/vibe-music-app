@@ -1,0 +1,13 @@
+plugins {
+    id 'java-library'
+}
+
+dependencies {
+    // Standard Lombok setup for Java 21+
+    compileOnly 'org.projectlombok:lombok:1.18.36'
+    annotationProcessor 'org.projectlombok:lombok:1.18.36'
+
+    // Also add these so other modules can "see" the Lombok effects
+    testCompileOnly 'org.projectlombok:lombok:1.18.36'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.36'
+}

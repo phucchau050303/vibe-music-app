@@ -1,45 +1,34 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '3.5.13'
+	id 'org.springframework.boot' version '3.5.13' apply false
 	id 'io.spring.dependency-management' version '1.1.7'
 }
 
-group = 'com.example'
-version = '0.0.1-SNAPSHOT'
+allprojects {
+	group = 'com.vibe'
+	version = '0.0.1-SNAPSHOT'
 
-java {
-	toolchain {
-		languageVersion = JavaLanguageVersion.of(21)
+	repositories {
+		mavenCentral()
 	}
 }
 
-repositories {
-	mavenCentral()
-}
+// Global settings for all modules
+subprojects {
+	apply plugin: 'java'
+	apply plugin: 'io.spring.dependency-management'
 
-ext {
-	set('springAiVersion', "1.1.4")
-	set('springCloudVersion', "2025.0.2")
-}
-
-dependencies {
-	implementation 'org.springframework.ai:spring-ai-starter-model-google-genai'
-	implementation 'org.springframework.cloud:spring-cloud-function-context'
-	compileOnly 'org.projectlombok:lombok'
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testCompileOnly 'org.projectlombok:lombok'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-	testAnnotationProcessor 'org.projectlombok:lombok'
-}
-
-dependencyManagement {
-	imports {
-		mavenBom "org.springframework.ai:spring-ai-bom:${springAiVersion}"
-		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	java {
+		toolchain {
+			languageVersion = JavaLanguageVersion.of(21)
+		}
 	}
-}
 
-tasks.named('test') {
-	useJUnitPlatform()
+	// Shared BOMs so you don't repeat versions in subprojects
+	dependencyManagement {
+		imports {
+			mavenBom "org.springframework.ai:spring-ai-bom:1.1.4"
+			mavenBom "org.springframework.cloud:spring-cloud-dependencies:2025.0.2"
+		}
+	}
 }
