@@ -1,1 +1,5 @@
 rootProject.name = 'vibe-music-app'
+include 'common'
+include 'intent-service'
+include 'playlist-fetcher-service'
+
