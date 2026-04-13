@@ -6,6 +6,7 @@ dependencies {
     // Standard Lombok setup for Java 21+
     compileOnly 'org.projectlombok:lombok:1.18.36'
     annotationProcessor 'org.projectlombok:lombok:1.18.36'
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.18.2'
 
     // Also add these so other modules can "see" the Lombok effects
     testCompileOnly 'org.projectlombok:lombok:1.18.36'
