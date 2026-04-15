@@ -14,6 +14,7 @@ public class IntentApplication {
     private final VibeProcessor vibeProcessor = new VibeProcessor("");
 
     public static void main(String[] args){
+
         SpringApplication.run(IntentApplication.class, args);
     }
 
